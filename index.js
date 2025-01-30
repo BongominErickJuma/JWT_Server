@@ -21,7 +21,11 @@ app.get("/", (req, res) => {
   res.status(200).send("Welcome to JWT");
 });
 
-app.get("/products", authenticateJWT, (req, res) => {
+app.get("/products", (req, res) => {
+  res.status(200).send(products);
+});
+
+app.get("/cart", authenticateJWT, (req, res) => {
   res.status(200).send(products);
 });
 app.use(authRoutes);
