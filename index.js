@@ -26,7 +26,7 @@ app.get("/products", (req, res) => {
 });
 
 app.get("/cart", authenticateJWT, (req, res) => {
-  res.status(200).send(products);
+  res.status(200).send("Order Placed Successfully");
 });
 app.use(authRoutes);
 
