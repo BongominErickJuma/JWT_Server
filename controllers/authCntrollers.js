@@ -65,6 +65,11 @@ const authenticateJWT = (req, res, next) => {
     const token = authHeader.split(" ")[1]; // Expecting "Bearer <token>"
     jwt.verify(token, SECRET_KEY, (err, user) => {
       if (err) {
+        if (err.name === "TokenExpiredError") {
+          return res
+            .status(401)
+            .send({ message: "Unauthorized: Token Expired" });
+        }
         return res.status(403).send({ message: "Forbidden: Invalid Token" });
       }
       req.user = user;

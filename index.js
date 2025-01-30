@@ -3,6 +3,7 @@ import env from "dotenv";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import { authenticateJWT } from "./controllers/authCntrollers.js";
+import products from "./products/products.js";
 
 env.config();
 const app = express();
@@ -21,7 +22,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/products", authenticateJWT, (req, res) => {
-  res.status(200).send("Welcome to JWT Product Page");
+  res.status(200).send(products);
 });
 app.use(authRoutes);
 
