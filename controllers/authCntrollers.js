@@ -45,14 +45,16 @@ const login_post = (req, res) => {
 };
 
 const signup_post = (req, res) => {
-  const { name, password } = req.body;
+  const { name, password, cardDetails } = req.body;
   const id = users.length + 1;
   const newUser = {
     id: id,
     name: name,
-    password: password, // In production, hash this password using bcrypt
+    password: password,
+    cardDetails: { ...cardDetails }, // In production, hash this password using bcrypt
   };
   users.push(newUser);
+  console.log(users);
   res.status(200).send({
     message: "Signup successful",
   });
